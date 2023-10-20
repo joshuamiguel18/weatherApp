@@ -1,0 +1,162 @@
+:root {
+  --border: 20px;
+}
+body {
+  background-color: beige;
+}
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 100;
+}
+nav {
+  height: 10vh; 
+  width: min(calc(100% - 20px) , 1600px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto;
+  gap: 3em;
+}
+nav h2 {
+  font-size: 2em;
+  font-weight: bold;
+  cursor: pointer;
+  color: #ff9500;
+}
+nav span {
+  color:black;
+  font-weight: bold;
+}
+.search {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  width: 500px;
+  border-radius: 50px;
+  border: 1px solid black;
+  background-color: aliceblue;
+}
+input {
+  border: none;
+  padding: 10px;
+  width: 90%;
+  outline: none;
+  font-size: 1rem;
+  background-color: aliceblue;
+}
+
+main {
+  padding: 1em 0;
+  margin: auto;
+  width: min(calc(100% - 20px) , 1600px);
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: url(assets/nature.jpg) center center;
+  background-size: cover;
+  width: 100%;
+  height: 400px;
+  border-radius: var(--border);
+  filter: grayscale(25%);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  color: aliceblue;
+}
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 400;
+}
+.hero h2 {
+  font-size: 3rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-family: 'Roboto', sans-serif;
+}
+.temp {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.row1 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1em;
+
+}
+.row1 .card {
+
+  flex-basis: 18%;
+  background-color: white;
+  border-radius: var(--border);
+  padding: 25px 15px;
+  height: 130px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.row1 h1 {
+  font-family: 'Roboto', sans-serif;
+  font-size: .8rem;
+  font-weight: bold;
+  margin-right: 10px;
+
+}
+.title {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+.row1 h2 {
+ 
+  font-size: 2rem;
+  font-weight: bold;
+
+}
+
+
+img {
+  width: 100px;
+  height: 100px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .row1 .card {
+    flex-basis: 40%;
+  }
+  .row1{
+    justify-content: center;
+
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .row1 .card {
+    flex-basis: 90%;
+  }
+  nav h2 {
+    font-size: 1.1em;
+
+  }
+  nav {
+
+    gap: 20px;
+  }
+  input {
+
+    font-size: 16px;
+
+  }
+}
