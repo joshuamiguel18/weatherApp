@@ -1,24 +1,36 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&family=Roboto:wght@100;300;400&display=swap');
+
 :root {
-  --border: 20px;
+  --border: 10px;
+  --main-width: min(calc(100% - 2em) , 1600px);
+  --primary-bg: #131214;
+  --card-bg: #1D1C1F;
+  --on-bg: #EAE6F2;
+  --secondary-color-font: #7b7980;
 }
 body {
-  background-color: beige;
+  background-color: var(--primary-bg);
 }
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
   font-family: 'Poppins', sans-serif;
+
   font-weight: 100;
+  color: var(--on-bg);
 }
+
 nav {
-  height: 10vh; 
-  width: min(calc(100% - 20px) , 1600px);
+  height: 8%; 
+  width: var(--main-width);
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: auto;
   gap: 3em;
+  padding: 10px;
 }
 nav h2 {
   font-size: 2em;
@@ -27,7 +39,7 @@ nav h2 {
   color: #ff9500;
 }
 nav span {
-  color:black;
+  color:var(--on-bg);
   font-weight: bold;
 }
 .search {
@@ -35,11 +47,11 @@ nav span {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
-  width: 500px;
-  border-radius: 50px;
+  padding: 5px;
+  width: 400px;
+  border-radius: 15px;
   border: 1px solid black;
-  background-color: aliceblue;
+  background: rgba(255,255, 255, .1);
 }
 input {
   border: none;
@@ -47,46 +59,159 @@ input {
   width: 90%;
   outline: none;
   font-size: 1rem;
-  background-color: aliceblue;
+  background: transparent;
+  color: #fff;
 }
-
+.searchIcon {
+  color: #fff;
+}
 main {
   padding: 1em 0;
   margin: auto;
-  width: min(calc(100% - 20px) , 1600px);
-  min-height: 90vh;
+  width: var(--main-width);
+
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 1em;
 }
 .hero {
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
   background: url(assets/nature.jpg) center center;
   background-size: cover;
-  width: 100%;
-  height: 400px;
+  width: 30%;
   border-radius: var(--border);
-  filter: grayscale(25%);
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  color: aliceblue;
+  height: 100%;
+  color: var(--on-bg);
+  background-image: linear-gradient(to left top, #07080d, #090b13, #0b0e18, #0d111c, #0e1320);
+}
+.city {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+.city .icon {
+  height: 50px;
+  line-height: 50px;
+  width: 50px;
+  text-align: center;
+  color: #3f63a2;
+}
+.city h2 {
+  font-size: 1.4em;
+  font-weight: 300;
+}
+.container {
+  background-color: var(--card-bg);
+  padding: 20px;
+  border-radius: var(--border);
+}
+.container h2 {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+h4 {
+  text-align: left;
+  font-weight: bold;
+
+}
+.hero-body {
+  width: 100%;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  gap: 1.5em;
+  flex-direction: column;
+  margin-bottom: 2em;
+  margin-top: 1em;
+
+}
+.hero-body .card {
+  background: rgba(255,255,255,.1);
+  box-shadow: 0 0 10px rgba(0,0,0,.2);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, .2);
+  padding: 1em;
+  border-radius: 10px;
+  width: min(350px, calc(100% - 20px));
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1.2em;
+}
+
+.hero-body .card:hover {
+  background-color: var(--secondary-color-font);
+}
+.hero-body.card:hover ~ .time {
+  color: var(--card-bg)
+}
+.hero-body .card .time{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1em;
+}
+.time .text h3{
+  font-size: .8em;
+}
+.time .text h2{
+  font-size: 1.3em;
+}
+.icon {
+  text-align: center;
+  line-height: 100%;
+}
+.body {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  gap: 1em;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .hero h1 {
   font-size: 3rem;
   font-weight: 400;
 }
-.hero h2 {
-  font-size: 3rem;
-  font-weight: bold;
-  letter-spacing: 1px;
-  font-family: 'Roboto', sans-serif;
+
+.header {
+  width: 100%;
+  padding: 1.5em;
+
+}
+.temp-des {
+  display: flex;
+  flex-direction: column;
+
+  padding: 2em 0;
+  margin: 2em 0;
+  border-bottom: 2px solid rgba(255, 255, 255, .2);
+}
+
+
+.temp-des h2 {
+  font-size: 2em;
+  font-weight: 400;
+}
+.temp-des p {
+  font-size: 1.1em;
+
+
+
 }
 .temp {
   display: flex;
   flex-direction: row;
-  align-items: center;
+
+  align-items: flex-end;
+  justify-content: space-between;
 }
 .row1 {
   width: 100%;
@@ -96,21 +221,25 @@ main {
   flex-wrap: wrap;
   gap: 1em;
 
+
 }
 .row1 .card {
 
-  flex-basis: 18%;
-  background-color: white;
+  flex-basis: 21%;
+  background: rgba(255,255, 255, .1);
   border-radius: var(--border);
   padding: 25px 15px;
   height: 130px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+  background: var(--primary-bg)
 }
 .row1 h1 {
-  font-family: 'Roboto', sans-serif;
-  font-size: .8rem;
-  font-weight: bold;
+
+  font-size: .9em;
+  font-weight: 400;
   margin-right: 10px;
+  color: var(--secondary-color-font);
+  
 
 }
 .title {
@@ -118,21 +247,36 @@ main {
   align-items: center;
   flex-direction: row;
   margin-bottom: 10px;
+  
 }
 .row1 h2 {
- 
-  font-size: 2rem;
-  font-weight: bold;
+  color: #fff;
+  font-size: 1.4em;
+  font-weight: 400;
 
 }
+.row2 {
 
+  width: 100%;
+  padding: 1.1em;
+  
+  background-color: #fff;
+  background: rgb(33,33,61);
+  border-radius: var(--border);
+  background: var(--card-bg);
+}
+.forecast {
+  font-weight: bold;
+  margin-bottom: 15px;
+  
+}
 
 img {
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1250px) {
   .row1 .card {
     flex-basis: 40%;
   }
@@ -140,9 +284,14 @@ img {
     justify-content: center;
 
   }
+  .row2 {
+
+    padding: 15px;
+
+  }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
   .row1 .card {
     flex-basis: 90%;
   }
@@ -157,6 +306,16 @@ img {
   input {
 
     font-size: 16px;
+
+  }
+  main {
+
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero, .body {
+
+    width: min(500px, calc(100% - 5px));
 
   }
 }

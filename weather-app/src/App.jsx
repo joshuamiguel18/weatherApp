@@ -1,46 +1,59 @@
 import { useState } from 'react'
 import './App.css'
-import ReactDOM from 'react-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faMagnifyingGlass, faWind, faDroplet, faTemperature0, faCloud, faTemperatureThreeQuarters} from '@fortawesome/free-solid-svg-icons'
 import clear from './assets/clear.png'
 import cloud from './assets/cloud.png'
 import drizzle from './assets/drizzle.png'
 import rain from './assets/rain.png'
 import snow from './assets/snow.png'
-
+import TemperatureGraph from './components/weatherChart'
+import Navigation from './Nav';
+import Hero from './components/Hero'
+import Weather from './components/Weather'
 
 function App() {
   const API_KEY = "a66fac648c963aea8e11a6aa875b5c18"
 
   const [data, setData] = useState({})
-  const [location, setLocation] = useState('Cebu')
+  const [data2, setData2] = useState({})
+  const [location, setLocation] = useState('Manila')
+
+  
+
   const [icon, setIcon] = useState(clear)
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${API_KEY}`
+  const url2 = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&units=metric&appid=${API_KEY}`
 
   //Load Default Location   
   window.onload = async () => { 
     const response = await fetch(url);
     const result = await response.json();
-    setData(result)
+    const response2 = await fetch(url2);
+    const result2 = await response2.json();
+    setData(result);
+    setData2(result2);
     setLocation("")
     putIcon()
   } 
    
 
-
   async function searchLocation(event) {
-    if(event.key === 'Enter') {
+    if (event.key === 'Enter') {
+      if (location === "") return;
       const response = await fetch(url);
       const result = await response.json();
-      setData(result)
-      console.log(result)
-    } else{
-      return
+      const response2 = await fetch(url2);
+      const result2 = await response2.json();
+      setData(result);
+      setData2(result2);
+
+    } else {
+      return;
     }
     putIcon()
-    setLocation("")
+    setLocation("");
   }
+
+  
   function putIcon() {
     if(data.weather[0].icon === "01d" || data.weather[0].icon === "01n"){
       setIcon(clear)
@@ -66,81 +79,34 @@ function App() {
   return (
     
     <>
-      <nav>
-        <h2>Weather<span>Today</span></h2>
-        <div className="search">
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
-          <input
-          value={location} 
-          onChange={event => setLocation(event.target.value)} 
-          onKeyDown={searchLocation}
-          placeholder='Search location'
-          type="text"/>
-        </div>
-      </nav>
-      <main>
-          <div className="hero">
-              
-              
-              {data.name ? <h1>{data.name}</h1>: <h1>Manila</h1>}
-              <div className="temp">
-                  {data.main ? <h2> {data.main.temp}°C</h2> :<h2>30°C</h2>}
-                  <img src={icon} alt="" />
-              </div>
-              
-              {data.weather ? <p>{data.weather[0].description}</p> : null}
-              
-          </div>
-          <div className="row1">
-              <div className="card">
-                <div className='title'>
-                  <h1>Current Temperature</h1> 
-                  <FontAwesomeIcon icon={faTemperature0} size="lg" style={{color: "#ff9500",}}s/>
-                </div>
-                
-                {data.main ? <h2> {data.main.temp}°C</h2> :null}
-              </div>
+      <Navigation
+        location={location}
+        onLocationChange={setLocation}
+        onLocationSearch={searchLocation}
+      />
 
-              <div className="card">
-                <div className='title'  >
-                  <h1>Humidity</h1>  
-                  <FontAwesomeIcon icon={faDroplet} size="lg"  style={{color: "#ff9500",}}/>
-                </div>
-                
-                {data.main ?  <h2>{data.main.humidity}%</h2> :  null
-                }
-                
-              </div>
-              <div className="card">
-                <div className='title'>
-                  <h1>Wind Speed</h1>
-                  <FontAwesomeIcon icon={faWind} size="lg" style={{color: "#ff9500",}}/>
-                </div>
-        
-                
-              {data.main ? <h2>{data.wind.speed} km/h</h2> : null
-                }
-              </div>
-              <div className="card">
-                <div className='title'>
-                  <h1>Pressure</h1>
-                  <FontAwesomeIcon icon={faCloud} size="lg" style={{color: "#ff9500",}}/>
-                </div>
-                {data.main ? <h2>{data.main.pressure} hPa</h2> : null }
-              </div>
-              
-              <div className="card">
-                <div className='title'>
-                  <h1>Wind Temperature</h1>
-                  <FontAwesomeIcon icon={faTemperatureThreeQuarters} size="lg" style={{color: "#ff9500",}}/>
-                </div>
-                {data.main ? <h2>{data.wind.deg}°C</h2> : null }
-              </div>
-          </div>
-          <div className="row2">
+      <main>
+          <Hero
+            data={data} 
+            icon={icon}
+          />
+
+          <div className="body">
+
+            
+            <Weather data={data} 
+            />
+            {data ? 
+            <div className="row2">
+              <h3 className='forecast'>5 Days Forecast</h3>
+              <TemperatureGraph temps={data2}/> 
+            </div> 
+            : <h1></h1>}
             
           </div>
-      </main>
+      </main> 
+     
+
     </>
   )
 }
