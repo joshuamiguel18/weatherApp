@@ -60,7 +60,7 @@ function Hero({ data, icon }) {
                         </div>
                     </div>
                     <div className="hours-ago">
-                        {data.sys ? <h5>{hoursAgo(data.sys.sunset) < 0  ? hoursAgo(data.sys.sunset) * -1 + 12: hoursAgo(data.sys.sunset) } hours ago</h5> : null}
+                        {data.sys ? <h5>{hoursAgo(data.sys.sunset) < 0  ? hoursAgo(data.sys.sunset) * -1 : hoursAgo(data.sys.sunset) } hours to go</h5> : null}
                     </div>
                 </div>
             </div>

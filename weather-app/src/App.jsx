@@ -77,36 +77,21 @@ function App() {
   
 
   return (
-    
     <>
-      <Navigation
-        location={location}
-        onLocationChange={setLocation}
-        onLocationSearch={searchLocation}
+      <Navigation location={location} onLocationChange={setLocation} onLocationSearch={searchLocation}
       />
-
       <main>
-          <Hero
-            data={data} 
-            icon={icon}
-          />
-
+          <Hero data={data} icon={icon} />
           <div className="body">
-
-            
-            <Weather data={data} 
-            />
+            <Weather data={data} />
             {data ? 
             <div className="row2">
               <h3 className='forecast'>5 Days Forecast</h3>
               <TemperatureGraph temps={data2}/> 
             </div> 
-            : <h1></h1>}
-            
+            : <h1></h1>}      
           </div>
       </main> 
-     
-
     </>
   )
 }
